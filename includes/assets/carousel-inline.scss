@@ -1,0 +1,12 @@
+.inline720px{
+  max-width: 720px;
+}
+
+// Galleries
+.gallery-size-thumbnail{
+  display: flex;
+  .gallery-item{
+    margin: .25rem .5rem .25rem 0;
+
+  }
+}
