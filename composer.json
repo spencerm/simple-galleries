@@ -1,0 +1,13 @@
+{
+    "name": "spencerm/simple-galleries",
+    "description": "lightweight galleries, extending native WordPress gallery with Bootstrap 4",
+    "type": "wordpress-plugin",
+    "keywords": ["wordpress", "plugin"],
+    "homepage": "https://github.com/spencerm/simple-galleries/",
+    "authors": [
+        {
+            "name": "Spencer McCormick",
+            "homepage": "https://spnzr.com"
+        }
+    ]
+}
