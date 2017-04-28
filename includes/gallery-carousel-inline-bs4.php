@@ -24,14 +24,15 @@ class CarouselInline {
    */
   public static function the_BS4_carousel($attachments) {
     global $post;
+    $gallery_number = SimpleGalleries::get_gallery_number();
 
     $number_photos = count( $attachments );
-    $output = "<div id='gallery-{$post->post_name}' class='carousel slide inline720px bg-inverse'><div class='carousel-inner' role='listbox'>";
+    $output = "<div id='gallery-{$post->post_name}-{$gallery_number}' class='carousel slide inline720px bg-inverse'><div class='carousel-inner' role='listbox'>";
 
     $output .= '<ol class="carousel-indicators">';
     $photo_number = 0;
     foreach ( $attachments as $key => $value ) {
-        $output .= "<li data-target='#gallery-{$post->post_name}' data-slide-to='{$photo_number}'></li>";
+        $output .= "<li data-target='#gallery-{$post->post_name}-{$gallery_number}' data-slide-to='{$photo_number}'></li>";
         $photo_number ++;
     }
     $output .= '</ol>';
@@ -56,11 +57,9 @@ class CarouselInline {
         $output .= '</div></div>';
     }
     $output .= "</div>";
-    $output .= "<a class='carousel-control-prev' href='#gallery-{$post->post_name}' role='button' data-slide='prev'> <span class='fa fa-2x fa-chevron-left' aria-hidden='true'></span> <span class='sr-only'>Previous</span> </a> <a class='carousel-control-next' href='#gallery-{$post->post_name}' role='button' data-slide='next'> <span class='fa fa-2x fa-chevron-right' aria-hidden='true'></span> <span class='sr-only'>Next</span></a>";
+    $output .= "<a class='carousel-control-prev' href='#gallery-{$post->post_name}-{$gallery_number}' role='button' data-slide='prev'> <span class='fa fa-2x fa-chevron-left' aria-hidden='true'></span> <span class='sr-only'>Previous</span> </a> <a class='carousel-control-next' href='#gallery-{$post->post_name}-{$gallery_number}' role='button' data-slide='next'> <span class='fa fa-2x fa-chevron-right' aria-hidden='true'></span> <span class='sr-only'>Next</span></a>";
     $output .= "</div>";
 
     return $output;
   }
-
-
 }

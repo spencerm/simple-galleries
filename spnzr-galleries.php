@@ -15,9 +15,14 @@ namespace Spnzr\Galleries;
 
 class SimpleGalleries{
 
+  /**
+   * number of galleries active
+   *  
+   */
+  static $gallery_number = 0;
+
   function __construct() {
 
-    $data = new Data;
 
     add_action( 'init', function () {
       add_image_size( 'spnzr_gallery_full', 720, 480, true ); 
@@ -27,7 +32,9 @@ class SimpleGalleries{
      * print options into WordPress add media template
      *  
      */
-    add_action( 'print_media_templates', __NAMESPACE__ . '\\print_media_templates');
+    if (is_admin()){
+      add_action( 'print_media_templates', __NAMESPACE__ . '\\print_media_templates');
+    }
 
     /**
      * Filtered html for gallery shortcode
@@ -35,30 +42,39 @@ class SimpleGalleries{
      *  
      * for example: $output = apply_filters( 'gallery_style', array( $this, 'makeContainerCarousel') );
      */
-    add_filter( 'post_gallery', function( $output, $attr ){
-      $galleryType  = isset( $attr['type'] ) ? $attr['type'] : 'default-slideshow';
-      $attachments  = Data::galleryAttr( $attr );
-      $name         = Data::galleryName();
+    add_filter( 'post_gallery', array($this, 'new_gallery'), 5, 2);
+
+  }
+
+  public static function get_gallery_number(){
+    return self::$gallery_number;
+  }
 
 
-      switch ($galleryType) {
-        case 'gallery-page':
-          add_filter( 'wp_get_attachment_image_attributes', array( '\Spnzr\Galleries\CarouselLightbox', 'add_data_to_images' ), 1000, 2 );
-          add_filter( 'gallery_style', array( '\Spnzr\Galleries\CarouselLightbox', 'make_gallery_container' ), 1000 );
-          CarouselLightbox::enqueue_BS4_assets();
-          break;
-        case 'gallery-list':
-          $output = GalleryList::the_gallery_list($attachments);
-          break;
-        case 'default-slideshow':
-        default:
-          $output = CarouselInline::the_BS4_carousel($attachments);
-          break;
-        }
-      return $output;
+  public function new_gallery( $output, $attr ){
+    $data = new Data;
 
-    }, 5, 2);
+    $galleryType  = isset( $attr['type'] ) ? $attr['type'] : 'default-slideshow';
+    $attachments  = Data::galleryAttr( $attr );
+    $name         = Data::galleryName();
 
+    self::$gallery_number ++;
+
+    switch ($galleryType) {
+      case 'gallery-page':
+        add_filter( 'wp_get_attachment_image_attributes', array( '\Spnzr\Galleries\CarouselLightbox', 'add_data_to_images' ), 1000, 2 );
+        add_filter( 'gallery_style', array( '\Spnzr\Galleries\CarouselLightbox', 'make_gallery_container' ), 1000 );
+        CarouselLightbox::enqueue_BS4_assets();
+        break;
+      case 'gallery-list':
+        $output = GalleryList::the_gallery_list($attachments);
+        break;
+      case 'default-slideshow':
+      default:
+        $output = CarouselInline::the_BS4_carousel($attachments);
+        break;
+      }
+    return $output;
   }
 
 }
