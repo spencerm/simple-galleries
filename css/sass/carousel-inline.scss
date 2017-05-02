@@ -1,0 +1,46 @@
+.inline660px{
+  max-width: 660px;
+  margin-bottom: 90px;
+  .carousel-inner{
+    // overflow-y: visible;
+  }
+  .carousel-item{
+    height: 440px;
+
+  }
+  .carousel-caption{
+    line-height: 1;
+    width: 100%;
+    text-shadow: 1px 0px 1px rgba(0,0,0,.9);
+    background: linear-gradient(0deg,rgba(0,0,0,.95) 0,rgba(0,0,0,0) 100%);
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    padding-bottom: 5px;
+    .d-sm-block{
+      max-width: 640px;
+      margin: auto;
+    }
+  }
+  .size-spnzr_gallery_full{
+    height: 100% !important;
+    width: auto !important;
+    margin: auto;
+  }
+  img{
+  }
+}
+.inline660px.bg-inverse{
+  border: 1px black solid;
+  max-width: 662px;
+  height: 442px;
+}
+
+// Galleries
+.gallery-size-thumbnail{
+  display: flex;
+  .gallery-item{
+    margin: .25rem .5rem .25rem 0;
+
+  }
+}
