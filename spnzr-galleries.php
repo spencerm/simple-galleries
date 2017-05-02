@@ -25,7 +25,7 @@ class SimpleGalleries{
 
 
     add_action( 'init', function () {
-      add_image_size( 'spnzr_gallery_full', 720, 480, true ); 
+      add_image_size( 'spnzr_gallery_full', 660, 440, false ); 
     });
 
     /**
