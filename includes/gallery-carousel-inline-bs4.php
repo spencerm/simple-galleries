@@ -27,8 +27,17 @@ class CarouselInline {
     $gallery_number = SimpleGalleries::get_gallery_number();
 
     $number_photos = count( $attachments );
-    $output = "<div id='gallery-{$post->post_name}-{$gallery_number}' class='carousel slide inline660px bg-inverse'><div class='carousel-inner' role='listbox'>";
 
+    /**
+     * gallery div & plugin filter 
+     */
+    $gallery_div = "<div id='gallery-{$post->post_name}-{$gallery_number}' class='carousel slide inline660px bg-inverse'><div class='carousel-inner' role='listbox'>";
+    
+    $output = apply_filters( 'gallery_style', $gallery_div );
+
+    /**
+     * carousel indicators  
+     */
     // $output .= '<ol class="carousel-indicators">';
     // $photo_number = 0;
     // foreach ( $attachments as $key => $value ) {

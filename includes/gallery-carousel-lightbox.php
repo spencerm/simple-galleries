@@ -1,20 +1,51 @@
 <?php 
 
+/**
+ * modal gallery 
+ *
+ * using https://github.com/Automattic/jetpack/blob/master/modules/carousel/jetpack-carousel.php
+ */ 
+
 namespace Spnzr\Galleries;
 
 class CarouselLightbox {
 
 
-  function __construct() {
-    // add_action( 'init', array( $this, 'init' ) );
+  /**
+   * @param array of attachment objects
+   *  
+   * @return string gallery
+   */
+  public static function the_single_image_gallery($attachments) {
+    global $post;
+
+    $gallery_number = SimpleGalleries::get_gallery_number();
+    
+    /**
+     * gallery div  
+     */
+    $gallery_div = "<div id='gallery-{$post->post_name}-{$gallery_number}' class='gallery carousel-lightbox'>";
+    
+    $output = apply_filters( 'gallery_style', $gallery_div );
+    /**
+     * gallery output  
+     */
+    $photo_number = 1;
+    foreach ( $attachments as $id => $attachment ) {
+      if ( $photo_number == 1 ){
+        $output .= wp_get_attachment_link( $attachment->ID, 'spnzr_gallery_full', true, false, false, array( 'class' => 'd-block img-fluid active') );
+        $output .= '<a class="btn btn-primary" href="' . get_attachment_link( $attachment->ID) .'" role="button"><i class="icon-slideshow"></i> Slideshow betrachten</a>';
+      } else {
+        $output .= wp_get_attachment_link( $attachment->ID, 'spnzr_gallery_full', true, false, false, array( 'class' => 'd-none') );
+      }
+      $photo_number ++;
+    }
+    $output .= "</div>";
+    return $output;
   }
 
 
   public static function enqueue_BS4_assets() {
-    // if ( $this->first_run ) {
-
-      // wp_register_script( 'spin', plugins_url( 'spin.js', __FILE__ ), false );
-      // wp_register_script( 'jquery.spin', plugins_url( 'jquery.spin.js', __FILE__ ) , array( 'jquery', 'spin' ) );
       wp_enqueue_script( 'jetpack-carousel', plugins_url( '../js/spnzr-galleries.js', __FILE__ ), array( 'jquery' ), null, true );
       wp_enqueue_style( 'jetpack-carousel', plugins_url( '../css/jetpack-carousel.css', __FILE__ ) );
 
@@ -29,8 +60,6 @@ class CarouselLightbox {
         'ajaxurl'              => set_url_scheme( admin_url( 'admin-ajax.php' ) ),
         'nonce'                => wp_create_nonce( 'carousel_nonce' ),
         'display_exif'         => 0,
-        // 'single_image_gallery' => $this->single_image_gallery_enabled,
-        // 'single_image_gallery_media_file' => $this->single_image_gallery_enabled_media_file,
         'background_color'     => '#000',
         'download_original'    => sprintf( __( 'View full size <span class="photo-size">%1$s<span class="photo-size-times">&times;</span>%2$s</span>', 'jetpack' ), '{0}', '{1}' ),
         'camera'               => __( 'Camera', 'jetpack' ),

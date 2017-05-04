@@ -53,7 +53,6 @@ class SimpleGalleries{
 
   public function new_gallery( $output, $attr ){
     $data = new Data;
-
     $galleryType  = isset( $attr['type'] ) ? $attr['type'] : 'default-slideshow';
     $attachments  = Data::galleryAttr( $attr );
     $name         = Data::galleryName();
@@ -65,6 +64,7 @@ class SimpleGalleries{
         add_filter( 'wp_get_attachment_image_attributes', array( '\Spnzr\Galleries\CarouselLightbox', 'add_data_to_images' ), 1000, 2 );
         add_filter( 'gallery_style', array( '\Spnzr\Galleries\CarouselLightbox', 'make_gallery_container' ), 1000 );
         CarouselLightbox::enqueue_BS4_assets();
+        $output = CarouselLightbox::the_single_image_gallery($attachments);
         break;
       case 'gallery-list':
         $output = GalleryList::the_gallery_list($attachments);

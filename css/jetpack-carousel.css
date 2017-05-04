@@ -1,3 +1,33 @@
+
+
+
+.carousel-lightbox{
+  position: relative;
+
+}
+.carousel-lightbox .btn{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  border-radius: 4px;
+  opacity: .6;
+  transition: opacity .2s;
+}
+.icon-slideshow{
+  background-image: url('icon-gallery.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  width: 1.4rem;
+  height: 1.4rem;
+  display: block;
+  float: left;
+  margin-right: .5rem;
+}
+.carousel-lightbox .btn:hover{
+  opacity: .9;
+}
+
 .carousel-wrap * {
 	line-height:inherit; /* prevent declarations of line-height in the universal selector */
 }
