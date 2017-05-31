@@ -10,7 +10,7 @@
   bottom: 20px;
   left: 20px;
   border-radius: 4px;
-  opacity: .6;
+  opacity: .75;
   transition: opacity .2s;
 }
 .icon-slideshow{
@@ -25,9 +25,16 @@
   margin-right: .5rem;
 }
 .carousel-lightbox .btn:hover{
-  opacity: .9;
+  opacity: 1;
+  background-color: #ff7700;
 }
 
+
+
+/**
+ * old
+ * (but with a lot deleted)
+ */
 .carousel-wrap * {
 	line-height:inherit; /* prevent declarations of line-height in the universal selector */
 }

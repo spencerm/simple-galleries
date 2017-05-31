@@ -126,6 +126,11 @@ class CarouselLightbox {
     return $content;
   }
 
+
+  /**
+   * using wp_get_attachment_image_attributes filter
+   */
+
   public static function add_data_to_images( $attr, $attachment = null ) {
     $attachment_id   = intval( $attachment->ID );
     $orig_file       = wp_get_attachment_image_src( $attachment_id, 'full' );
@@ -150,9 +155,8 @@ class CarouselLightbox {
     $large_file_info  = wp_get_attachment_image_src( $attachment_id, 'large' );
     $large_file       = isset( $large_file_info[0] ) ? $large_file_info[0] : '';
 
-    $attachment       = get_post( $attachment_id );
-    $attachment_title = wptexturize( $attachment->post_title );
-    $attachment_desc  = wpautop( wptexturize( $attachment->post_content ) );
+    $attachment_title = wptexturize( get_post_field( 'post_title', $attachment_id ) );
+    $attachment_desc  = wpautop( wptexturize( get_post_field( 'post_excerpt', $attachment_id ) ) );
 
     // Not yet providing geo-data, need to "fuzzify" for privacy
     // if ( ! empty( $img_meta ) ) {

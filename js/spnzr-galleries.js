@@ -101,18 +101,22 @@ jQuery(document).ready(function($) {
       caption    = $('<h2 itemprop="caption description"></h2>');
       photo_info = $('<div class="carousel-photo-info"></div>').append(caption);
 
-      imageMeta = $('<div></div>')
-        .addClass('carousel-image-meta')
+      /*
+       * removing image meta
+       *
+       */
+       imageMeta = $('<div></div>')
+        // .addClass('carousel-image-meta')
         .css({
           'float'      : 'right',
           'margin-top' : '20px',
           'width'      :  '250px'
         });
 
-      imageMeta
+      /*imageMeta
         .append( '<ul class=\'carousel-image-exif\' style=\'display:none;\'></ul>' )
         .append( '<a class=\'carousel-image-download\' style=\'display:none;\'></a>' )
-        .append( '<div class=\'carousel-image-map\' style=\'display:none;\'></div>' );
+        .append( '<div class=\'carousel-image-map\' style=\'display:none;\'></div>' );*/
 
       titleAndDescription = $('<div></div>')
         .addClass('carousel-titleanddesc')
@@ -565,9 +569,9 @@ jQuery(document).ready(function($) {
       });
 
       var imageMeta = current.data( 'image-meta' );
-      gallery.jp_carousel( 'updateExif', imageMeta );
-      gallery.jp_carousel( 'updateFullSizeLink', current );
-      gallery.jp_carousel( 'updateMap', imageMeta );
+      // gallery.jp_carousel( 'updateExif', imageMeta );
+      // gallery.jp_carousel( 'updateFullSizeLink', current );
+      // gallery.jp_carousel( 'updateMap', imageMeta );
 
 
       // $('<div />').text(sometext).html() is a trick to go to HTML to plain
