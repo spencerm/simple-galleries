@@ -47,6 +47,7 @@ class GalleryList {
       } else if ($attachment->post_title) {
           $output .= "<p class=\"caption\">" . $attachment->post_title . "</p>";
       }
+      $output .= '</div>';
     }
     $output .= '</div>';
     return $output;
