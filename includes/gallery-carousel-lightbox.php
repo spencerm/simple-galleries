@@ -34,7 +34,7 @@ class CarouselLightbox {
     foreach ( $attachments as $id => $attachment ) {
       if ( $photo_number == 1 ){
         $output .= wp_get_attachment_link( $attachment->ID, 'spnzr_gallery_full', true, false, false, array( 'class' => 'd-block img-fluid active') );
-        $output .= '<a class="btn btn-primary" href="' . get_attachment_link( $attachment->ID) .'" role="button"><i class="icon-slideshow"></i> Slideshow betrachten</a>';
+        $output .= '<a class="btn btn-primary" href="' . get_attachment_link( $attachment->ID) .'" role="button"><i class="icon-slideshow"></i> Launch Slideshow</a>';
       } else {
         $output .= wp_get_attachment_link( $attachment->ID, 'spnzr_gallery_full', true, false, false, array( 'class' => 'd-none') );
       }

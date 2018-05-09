@@ -1,4 +1,6 @@
 .inline720px{
   max-width: 720px;
 }
-
+.carousel-lightbox{
+  text-shadow: black 2px 0px 1px;
+}

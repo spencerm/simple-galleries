@@ -2,8 +2,8 @@
 
 
 .carousel-lightbox{
-  position: relative;
-
+	position: relative;
+	margin-bottom: 1rem;
 }
 .carousel-lightbox .btn{
   position: absolute;
@@ -26,7 +26,6 @@
 }
 .carousel-lightbox .btn:hover{
   opacity: 1;
-  background-color: #ff7700;
 }
 
 
