@@ -3,7 +3,7 @@
 Plugin Name:  Simple Galleries
 Plugin URL:   https://spnzr.com/
 Description:  Easy, lightweight galleries, extending native WordPress gallery with Bootstrap 4
-Version:      0.1
+Version:      0.1.1
 Author:       Spencer McCormick
 
 
