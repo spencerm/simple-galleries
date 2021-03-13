@@ -12,6 +12,10 @@ License URI:        http://opensource.org/licenses/MIT
 */
 namespace Spnzr\Galleries;
 
+require_once 'includes/view-gallery-options.php';
+require_once 'includes/gallery-carousel-lightbox.php';
+require_once 'includes/gallery-carousel-inline-bs4.php';
+require_once 'includes/gallery-list.php';
 
 class SimpleGalleries{
 
@@ -81,15 +85,6 @@ class SimpleGalleries{
 
 
 add_action('after_setup_theme', function(){
-  require_once 'includes/data.php';
-  if (is_admin()) {
-    require_once 'includes/view-gallery-options.php';
-
-  } else{
-    require_once 'includes/gallery-carousel-lightbox.php';
-    require_once 'includes/gallery-carousel-inline-bs4.php';
-    require_once 'includes/gallery-list.php';
-  }
   $gallery = new SimpleGalleries;
 }, 100);
 
