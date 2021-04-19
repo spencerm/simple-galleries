@@ -12,6 +12,7 @@ License URI:        http://opensource.org/licenses/MIT
 */
 namespace Spnzr\Galleries;
 
+require_once 'includes/data.php';
 require_once 'includes/view-gallery-options.php';
 require_once 'includes/gallery-carousel-lightbox.php';
 require_once 'includes/gallery-carousel-inline-bs4.php';
